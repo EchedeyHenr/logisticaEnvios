@@ -53,3 +53,8 @@ class ShipmentService:
         result.sort(key=lambda item: item[0].lower())
         return result
 
+    def get_shipment(self, tracking_code):
+        shipment = self._repo.get_by_tracking_code(tracking_code)
+        if shipment is None:
+            raise ValueError("No existe el envío")
+        return shipment
