@@ -1,8 +1,11 @@
 # presentation/menu.py
+
 from logisticaEnvios.application.shipment_service import ShipmentService
 from logisticaEnvios.application.route_service import RouteService
+from logisticaEnvios.application.center_service import CenterService
 from logisticaEnvios.infrastructure.memory_shipment import ShipmentRepositoryMemory
 from logisticaEnvios.infrastructure.seed_data import seed_repository
+
 
 def mostrar_menu():
     print("\n=== LOGÍSTICA - GESTIÓN DE ENVÍOS ===")
@@ -14,7 +17,16 @@ def mostrar_menu():
     print("6. Disminuir prioridad")
     print("7. Listar envíos")
     print("8. Ver detalles de un envío")
-    print("9. Salir")
+    print("9. Registrar centro logístico")
+    print("10. Listar centro logístico")
+    print("11. Ver envíos en un centro")
+    print("12. Crear ruta")
+    print("13. Listar rutas")
+    print("14. Asignar varios envíos a una ruta")
+    print("15. Despachar ruta")
+    print("16. Completar ruta")
+    print("17. Salir")
+
 
 def main():
     repos = seed_repository()
@@ -25,10 +37,15 @@ def main():
         repos["shipments"],
         repos["centers"]
     )
+    center_service = CenterService(
+        repos["centers"],
+        repos["routes"]
+    )
 
     while True:
         mostrar_menu()
         opcion = input("Elige una opción: ").strip()
+
 
         try:
             if opcion == "1":
@@ -37,20 +54,25 @@ def main():
                 recipient = input("Destinatario: ").strip()
                 priority = int(input("Prioridad (1-normal, 2-media, 3-alta): ").strip() or 1)
 
+
                 shipment_service.register_shipment(tracking_code, sender, recipient, priority)
                 print(f"✔ Envío {tracking_code} registrado con éxito.")
+
 
             elif opcion == "2":
                 tracking_code = input("Código de seguimiento: ").strip()
                 route_id = input("ID de ruta: ").strip()
 
+
                 route_service.assign_shipment_to_route(tracking_code, route_id)
                 print(f"✔ Envío {tracking_code} asignado a la ruta {route_id}.")
+
 
             elif opcion == "3":
                 tracking_code = input("Código de seguimiento: ").strip()
                 route_service.remove_shipment_from_route(tracking_code)
                 print(f"✔ Envío {tracking_code} eliminado de su ruta.")
+
 
             elif opcion == "4":
                 tracking_code = input("Código de seguimiento: ").strip()
@@ -59,15 +81,18 @@ def main():
                 shipment_service.update_shipment_status(tracking_code, new_status)
                 print(f"✔ Estado del envío {tracking_code} actualizado a {new_status}.")
 
+
             elif opcion == "5":
                 tracking_code = input("Código de seguimiento: ").strip()
                 shipment_service.increase_shipment_priority(tracking_code)
                 print(f"✔ Prioridad del envío {tracking_code} aumentada.")
 
+
             elif opcion == "6":
                 tracking_code = input("Código de seguimiento: ").strip()
                 shipment_service.decrease_shipment_priority(tracking_code)
                 print(f"✔ Prioridad del envío {tracking_code} disminuida.")
+
 
             elif opcion == "7":
                 envios = shipment_service.list_shipments()
@@ -75,9 +100,11 @@ def main():
                     route_str = route or "(sin ruta)"
                     print(f"- {code} | {status} | P:{priority} | Ruta: {route_str}")
 
+
             elif opcion == "8":
                 tracking_code = input("Código de seguimiento del envío: ").strip()
                 shipment = shipment_service.get_shipment(tracking_code)
+
 
                 print(f"\nDetalles del envío {tracking_code}:")
                 print(f"Remitente: {shipment.sender}")
@@ -90,12 +117,69 @@ def main():
                 for i, estado in enumerate(shipment.get_status_history(), start=1):
                     print(f"  {i}. {estado}")
 
+
             elif opcion == "9":
+                center_id = input("Identificador del centro logístico: ").strip()
+                center_name = input("Nombre del centro logístico: ").strip()
+                location_name = input("Ubicación del centro logístico: ").strip()
+
+                center_service.register_center(center_id, center_name, location_name)
+                print(f"✔ Centro {center_id} registrado con éxito.")
+
+
+            elif opcion == "10":
+                centers = center_service.list_centers()
+
+                for c_id, c_name, c_location in centers:
+                    print(f"- {c_id} | {c_name} | Location: {c_location}")
+
+
+            elif opcion == "11":
+                center_id = input("Identificador del centro logístico: ").strip()
+                shipments_in_center = center_service.list_shipments_in_center(center_id)
+
+                print(f"Envios en el Centro {center_id}:")
+
+                for i, shipment in enumerate(shipments_in_center, start=1):
+                    print(f"  {i}. {shipment}")
+
+
+            elif opcion == "12":
+                route_id = input("Identificador de la ruta: ").strip()
+                origin_center_id = input("Identificador del centro de origen: ").strip()
+                destination_center_id = input("Identificador del centro de destino: ").strip()
+
+                route_service.create_route(route_id, origin_center_id, destination_center_id)
+                print(f"✔ Ruta {route_id} registrada con éxito.")
+
+
+            elif opcion == "13":
+                routes = route_service.list_routes()
+
+                for routes_id, origin_center_id, destination_center_id in routes:
+                    print(f"- {routes_id} | Origen: {origin_center_id} | Destino: {destination_center_id}")
+
+
+            elif opcion == "14":
+                pass
+
+
+            elif opcion == "15":
+                pass
+
+
+            elif opcion == "16":
+                pass
+
+
+            elif opcion == "17":
                 print("Hasta luego.")
                 break
 
+
             else:
                 print("Opción no válida.")
+
 
         except ValueError as e:
             print("X " + str(e))
