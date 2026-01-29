@@ -4,8 +4,6 @@
 # _status_history: list[str]
 # _priority: int : 1 (normal), 2 (mid), 3 (high)
 
-from logisticaEnvios.domain.route import Route
-
 class Shipment:
     def __init__(self, tracking_code, sender, recipient, priority=1, assigned_route=None):
         if not tracking_code or not isinstance(tracking_code, str):
@@ -63,8 +61,8 @@ class Shipment:
             raise ValueError(f"Transición no permitida: de {self._current_status} a {new_status_format}")
 
     def assign_route(self, new_assigned_route):
-        if not isinstance(new_assigned_route, Route):
-            raise ValueError("La ruta asignada no es válida.")
+        if new_assigned_route is None:
+            raise ValueError("La ruta asignada no puede ser None.")
 
         self._assigned_route = new_assigned_route
 
