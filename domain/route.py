@@ -1,5 +1,5 @@
 # domain/route.py
-from logisticaEnvios.domain.shipment import Shipment
+from logistica.domain.shipment import Shipment
 
 class Route:
     def __init__(self, route_id, origin_center, destination_center):

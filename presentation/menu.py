@@ -1,10 +1,10 @@
 # presentation/menu.py
 
-from logisticaEnvios.application.shipment_service import ShipmentService
-from logisticaEnvios.application.route_service import RouteService
-from logisticaEnvios.application.center_service import CenterService
-from logisticaEnvios.infrastructure.memory_shipment import ShipmentRepositoryMemory
-from logisticaEnvios.infrastructure.seed_data import seed_repository
+from logistica.application.shipment_service import ShipmentService
+from logistica.application.route_service import RouteService
+from logistica.application.center_service import CenterService
+from logistica.infrastructure.memory_shipment import ShipmentRepositoryMemory
+from logistica.infrastructure.seed_data import seed_repository
 
 
 def mostrar_menu():

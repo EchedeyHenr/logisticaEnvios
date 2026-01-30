@@ -1,6 +1,6 @@
 # application/route_service.py
 
-from logisticaEnvios.domain.route import Route
+from logistica.domain.route import Route
 
 class RouteService:
 

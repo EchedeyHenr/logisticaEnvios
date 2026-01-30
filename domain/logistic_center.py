@@ -1,5 +1,5 @@
 # domain/logistic_center.py
-from logisticaEnvios.domain.shipment import Shipment
+from logistica.domain.shipment import Shipment
 
 class LogisticCenter:
     def __init__(self, center_id, name, location):
