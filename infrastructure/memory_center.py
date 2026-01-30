@@ -1,6 +1,6 @@
 # infrastructure/memory_center.py
 
-from logisticaEnvios.domain.center_repository import CenterRepository
+from logistica.domain.center_repository import CenterRepository
 
 class CenterRepositoryMemory(CenterRepository):
     def __init__(self):

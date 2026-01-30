@@ -1,9 +1,9 @@
 # application/services.py
 
-from logisticaEnvios.domain.shipment import Shipment
-from logisticaEnvios.domain.fragile_shipment import FragileShipment
-from logisticaEnvios.domain.express_shipment import ExpressShipment
-from logisticaEnvios.domain.shipment_repository import ShipmentRepository
+from logistica.domain.shipment import Shipment
+from logistica.domain.fragile_shipment import FragileShipment
+from logistica.domain.express_shipment import ExpressShipment
+from logistica.domain.shipment_repository import ShipmentRepository
 
 class ShipmentService:
 

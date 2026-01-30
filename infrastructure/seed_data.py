@@ -1,14 +1,14 @@
 # infrastructure/seed_data.py
 
-from logisticaEnvios.domain.shipment import Shipment
-from logisticaEnvios.domain.fragile_shipment import FragileShipment
-from logisticaEnvios.domain.express_shipment import ExpressShipment
-from logisticaEnvios.domain.logistic_center import LogisticCenter
-from logisticaEnvios.domain.route import Route
+from logistica.domain.shipment import Shipment
+from logistica.domain.fragile_shipment import FragileShipment
+from logistica.domain.express_shipment import ExpressShipment
+from logistica.domain.logistic_center import LogisticCenter
+from logistica.domain.route import Route
 
-from logisticaEnvios.infrastructure.memory_shipment import ShipmentRepositoryMemory
-from logisticaEnvios.infrastructure.memory_center import CenterRepositoryMemory
-from logisticaEnvios.infrastructure.memory_route import RouteRepositoryMemory
+from logistica.infrastructure.memory_shipment import ShipmentRepositoryMemory
+from logistica.infrastructure.memory_center import CenterRepositoryMemory
+from logistica.infrastructure.memory_route import RouteRepositoryMemory
 
 
 def seed_repository():

@@ -1,6 +1,6 @@
 # infrastructure/memory_route.py
 
-from logisticaEnvios.domain.route_repository import RouteRepository
+from logistica.domain.route_repository import RouteRepository
 
 class RouteRepositoryMemory(RouteRepository):
     def __init__(self):

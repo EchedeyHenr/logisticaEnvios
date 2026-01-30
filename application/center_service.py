@@ -1,6 +1,6 @@
 # application/center_service.py
 
-from logisticaEnvios.domain.logistic_center import LogisticCenter
+from logistica.domain.logistic_center import LogisticCenter
 
 class CenterService:
 

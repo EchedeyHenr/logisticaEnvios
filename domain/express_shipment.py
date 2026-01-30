@@ -1,6 +1,6 @@
 # domain/express_shipment.py
 
-from logisticaEnvios.domain.shipment import Shipment
+from logistica.domain.shipment import Shipment
 
 class ExpressShipment(Shipment):
     def __init__(self, tracking_code, sender, recipient):

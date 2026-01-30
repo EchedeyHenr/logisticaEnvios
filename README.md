@@ -159,7 +159,7 @@ The system prevents invalid transitions to ensure process consistency.
 ### <span id="en-structure"></span> 📂 Project Structure
 
 ```
-📦logisticaEnvios
+📦logistica
  ┣ 📜__init__.py
  ┣ 📜main.py                     # Application entry point; initializes repositories, services, and starts the interface.
  ┣ 📂presentation
@@ -318,7 +318,7 @@ El siguiente diagrama de secuencia muestra cómo fluye una operación de envío 
 ### <span id="es-estructura"></span> 📂 Estructura del proyecto
 
 ```
-📦logisticaEnvios
+📦logistica
  ┣ 📜__init__.py
  ┣ 📜main.py                     # Punto de entrada de la aplicación; inicializa repositorios, servicios y lanza la interfaz.
  ┣ 📂presentation

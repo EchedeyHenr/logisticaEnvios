@@ -1,8 +1,9 @@
 # test_repositorio_memoria.py
 # Script para probar ShipmentRepositoryMemory con casos posibles
 
-from logisticaEnvios.domain.shipment import Shipment
-from logisticaEnvios.infrastructure.memory_shipment import ShipmentRepositoryMemory
+from logistica.domain.shipment import Shipment
+from logistica.domain.route import Route
+from logistica.infrastructure.memory_shipment import ShipmentRepositoryMemory
 
 # Crear el repositorio
 repo = ShipmentRepositoryMemory()
@@ -62,7 +63,8 @@ print("---")
 
 # Caso 8: Asignar y eliminar ruta
 print("Caso 8: Asignar y eliminar ruta")
-envio1.assign_route("Ruta-1")
+ruta = Route("RTEST", "MAD-16", "GC-06")
+envio1.assign_route(ruta)
 print("Ruta asignada:", envio1.assigned_route)  # Esperado: Ruta-1
 print("¿Asignado a ruta?", envio1.is_assigned_to_route())  # Esperado: True
 envio1.remove_route()
@@ -72,7 +74,6 @@ print("---")
 
 # Caso 9: Incrementar y decrementar prioridad
 print("Caso 9: Incrementar y decrementar prioridad")
-envio1.priority = 2
 print("Prioridad inicial:", envio1.priority)  # Esperado: 2
 envio1.increase_priority()
 print("Prioridad después de increase:", envio1.priority)  # Esperado: 3
