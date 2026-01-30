@@ -26,6 +26,8 @@
   - [Main Domain Entities](#en-entities)
   - [Project Scope](#en-scope)
   - [Architecture](#en-architecture)
+  - [Project Execution and Testing Instructions](#en-instructions)
+  - [Workflow](#en-workflow)
   - [Shipment Lifecycle (UML)](#en-uml)
   - [Project Structure](#en-structure)
 
@@ -35,6 +37,8 @@
   - [Entidades principales del dominio](#es-entidades)
   - [Alcance del proyecto](#es-alcance)
   - [Arquitectura](#es-arquitectura)
+  - [Instrucciones para ejecutar el proyecto y test](#es-instrucciones)
+  - [Flujo de trabajo](#es-flujo)
   - [Ciclo de Vida del Envío (UML)](#es-uml)
   - [Estructura del proyecto](#es-estructura)
 
@@ -145,6 +149,101 @@ The system prevents invalid transitions to ensure process consistency.
 * **Application**: Use cases and orchestration of business logic.
 * **Domain**: Business models and rules.
 * **Infrastructure**: Technical persistence implementations.
+
+<hr>
+
+### <span id="en-instructions"></span> 🚀 Project Execution and Testing Instructions
+
+Follow these steps to set up and run the logistics management system in your local environment.
+
+The repository will be on the main branch (master) with the current delivery content. Once the delivery is finalized, a branch named 01-diseno-capas (01-layer-design) will be created.
+
+**1. Clone the repository**
+
+Clone the project from GitHub using HTTPS:
+
+```bash
+git clone https://github.com/EchedeyHenr/logistica.git
+```
+
+**2. Run the application**
+
+```bash
+python -m logistica.presentation.menu
+```
+
+#### Running Tests:
+
+To run the tests, you must be in the parent directory of the project package. From there, you can use the following commands to execute different test suites.
+
+* **test_domain_shipments.py**
+
+Validates shipment business rules, ensuring that priority constraints and state transitions (lifecycle) are met according to the package type.
+
+```bash
+python -m logistica.test_domain_shipments
+```
+
+* **test_domain_centers.py**
+
+Checks the operational management of logistics centers, verifying the incoming and outgoing goods and the integrity of the local inventory.
+
+```bash
+python -m logistica.test_domain_centers
+```
+
+* **test_domain_routes.py**
+
+Simulates the transport flow between nodes, guaranteeing that the origin-destination connection is valid and that packages move correctly between centers.
+
+```bash
+python -m logistica.test_domain_routes
+```
+
+* **test_infra_and_services.py**
+
+Executes a full integration test that coordinates services, repositories, and domain models to validate a real end-to-end workflow.
+
+```bash
+python -m logistica.test_infra_and_services
+```
+
+* **test_shipment_logic.py**
+
+Specifically tests the polymorphic logic of the shipment service, confirming that the system correctly creates and handles Fragile and Express specializations.
+
+```bash
+python -m logistica.test_shipment_logic
+```
+
+* **test_robustness.py**
+
+Evaluates the system's resilience against adverse conditions, malformed data, and out-of-sequence actions to ensure secure error handling.
+
+```bash
+python -m logistica.test_robustness
+```
+
+<hr>
+
+### <span id="en-workflow"></span> 🌳 Workflow
+
+Every change in this project is handled through a branch-based workflow. Features, fixes, and refactors are integrated via Pull Requests to ensure traceability and code quality.
+
+#### 🔄 Contribution Process
+
+1. Create a specific branch from master using the prefixes detailed below.
+2. Make changes and commits following the established naming standards. 
+3. Open a Pull Request (PR) detailing the introduced changes. 
+4. Merge into the main branch after verifying that the tests are successful.
+
+| Prefix    | Description                                   |
+|-----------|-----------------------------------------------|
+| feat/     | New features and capabilities.                |
+| fix/      | Bug fixes and error corrections.              |
+| docs/     | Documentation updates and improvements.       |
+| refactor/ | Code improvements without changing logic.     |
+| test/     | Adding or updating test cases.                |
 
 <hr>
 
@@ -302,6 +401,100 @@ El proyecto sigue una arquitectura en capas:
 * **Infrastructure**: Implementaciones técnicas de persistencia.
 
 Esta separación facilita la mantenibilidad, la escalabilidad y la evolución del sistema.
+
+<hr>
+
+## <span id="es-instrucciones"></span> 🚀 Instrucciones para ejecutar el proyecto y test
+
+Sigue estos pasos para configurar y ejecutar el sistema de gestión logística en tu entorno local. 
+
+El repositorio estará en la rama principal (master) con el contenido actual para la entrega. Una vez se finalice la entrega, se creará una rama con el nombre "01-diseno-capas".
+
+**1. Clonar el repositorio**
+
+Clona el proyecto desde GitHub usando HTTPS:
+
+```bash
+git clone https://github.com/EchedeyHenr/logistica.git
+```
+
+**2. Ejecuta la aplicación**
+
+```bash
+python -m logistica.presentation.menu
+```
+
+#### Ejecución de test:
+
+Para ejecutar los test es necesario estar en la carpeta anterior a la del proyecto. Una vez ahí, podremos utilizar los distintos comandos para ejecutar distintos tests.
+
+* **test_domain_shipments.py**
+
+Valida las reglas de negocio de los envíos, asegurando que las restricciones de prioridad y las transiciones de estado (ciclo de vida) se cumplan según el tipo de paquete.
+
+```bash
+python -m logistica.test_domain_shipments
+```
+
+* **test_domain_centers.py**
+
+Comprueba la gestión operativa de los centros logísticos, verificando la entrada y salida de mercancía y la integridad del inventario local.
+
+```bash
+python -m logistica.test_domain_centers
+```
+
+* **test_domain_routes.py**
+
+Simula el flujo de transporte entre nodos, garantizando que la conexión origen-destino sea válida y que los paquetes se muevan correctamente entre centros.
+
+```bash
+python -m logistica.test_domain_routes
+```
+
+* **test_infra_and_services.py**
+
+Ejecuta un test de integración completo que coordina servicios, repositorios y modelos de dominio para validar un flujo de trabajo real de extremo a extremo.
+
+```bash
+python -m logistica.test_infra_and_services
+```
+
+* **test_shipment_logic.py**
+
+Prueba específicamente la lógica polimórfica del servicio de envíos, confirmando que el sistema crea y maneja correctamente las especializaciones Frágil y Express.
+
+```bash
+python -m logistica.test_shipment_logic
+```
+
+* **test_robustness.py**
+
+Evalúa la resiliencia del sistema frente a condiciones adversas, datos mal formados y acciones fuera de secuencia para garantizar un manejo de errores seguro.
+
+```bash
+python -m logistica.test_robustness
+```
+<hr>
+
+### <span id="es-flujo"></span> 🌳 Flujo de Trabajo (Git Flow)
+
+Este proyecto sigue una metodología de desarrollo basada en ramas, donde cada cambio se integra mediante Pull Requests para mantener la trazabilidad y calidad del código.
+
+#### 🔄 Proceso de Contribución
+
+1. Crear una rama específica desde master usando los prefijos detallados abajo.
+2. Realizar los cambios y commits siguiendo los estándares de nomenclatura.
+3. Abrir una Pull Request (PR) detallando los cambios introducidos.
+4. Merge en la rama principal tras verificar que los tests son satisfactorios.
+
+| Prefijos  | Description                                          |
+|-----------|------------------------------------------------------|
+| feat/     | Nuevas funcionalidades y capacidades.                |
+| fix/      | Correcciones de errores y fallos.                    |
+| docs/     | Actualizaciones y mejoras de la documentación.       |
+| refactor/ | Mejoras de código sin cambiar la lógica.             |
+| test/     | Añadir o actualizar casos de prueba.                 |
 
 <hr>
 
