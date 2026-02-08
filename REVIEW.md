@@ -3,7 +3,7 @@
 ## RECOMENDACIONES / COMENTARIOS
 
 - La aplicación prometem pero debes reestructurar algunos aspectos para que siga los principios del diseño por capas que hemos visto en clase. 
-- Las validaciones en los constructores mejor hacerlas con **setters**. Por ejemplo de `center_id`, `name`, `location` en la clase `LogisticCenter` puedes hacer las validaciones en los **setters** de los mismos y luego usarlos en el constructor.
+- Las validaciones en los constructores mejor hacerlas con **setters**. Por ejemplo de `center_id`, `name`, `location` en la clase `Center` puedes hacer las validaciones en los **setters** de los mismos y luego usarlos en el constructor.
 
 ## ASPECTOS A CAMBIAR / AÑADIR
 
