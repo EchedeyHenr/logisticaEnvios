@@ -272,7 +272,7 @@ Every change in this project is handled through a branch-based workflow. Feature
  ┣ 📂domain
  ┃ ┣ 📜__init__.py
  ┃ ┣ 📜center_repository.py      # Defines the contract (interface) for logistic center repositories.
- ┃ ┣ 📜logistic_center.py        # Domain model representing a logistic center and its inventory.
+ ┃ ┣ 📜center.py        # Domain model representing a logistic center and its inventory.
  ┃ ┣ 📜route.py                  # Domain model representing a transport route.
  ┃ ┣ 📜route_repository.py       # Contract for route persistence and access.
  ┃ ┣ 📜shipment.py               # Base class that models a shipment and its lifecycle.
@@ -525,7 +525,7 @@ El siguiente diagrama de secuencia muestra cómo fluye una operación de envío 
  ┣ 📂domain
  ┃ ┣ 📜__init__.py
  ┃ ┣ 📜center_repository.py      # Define el contrato (interfaz) para repositorios de centros logísticos.
- ┃ ┣ 📜logistic_center.py        # Modelo de dominio que representa un centro logístico y su inventario.
+ ┃ ┣ 📜center.py        # Modelo de dominio que representa un centro logístico y su inventario.
  ┃ ┣ 📜route.py                  # Modelo de dominio que representa una ruta de transporte.
  ┃ ┣ 📜route_repository.py       # Contrato para el acceso y persistencia de rutas.
  ┃ ┣ 📜shipment.py               # Clase base que modela un envío y su ciclo de vida.
