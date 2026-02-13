@@ -278,7 +278,7 @@ class RouteService:
         # Validar que no esté ya despachada (todos los envíos en IN_TRANSIT)
         # Esto es una optimización, no una regla de negocio estricta
         shipments = route.list_shipment()
-        if shipments and all(s.current_status == "IN_TRANSIT" for s in route.list_shipment()):
+        if shipments and all(s.current_status == "IN_TRANSIT" for s in shipments):
             raise ValueError(f"La ruta '{route_id}' ya ha sido despachada.")
 
         origin_center = route.origin_center
